@@ -1,0 +1,31 @@
+﻿@page "/FileManager"
+@rendermode InteractiveServer
+<h3>FileManager</h3>
+<button id="refresh" @onclick="Refresh"></button>
+<div class="nav-scrollable" onclick="document.querySelector('.navbar-toggler').click()">
+    <nav class="flex-column">
+        @foreach (var item in FILES)
+        {
+            <div class="nav-item px-3">
+                <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                    <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> @item
+                </NavLink>
+            </div>
+        }
+ 
+    </nav>
+</div>
+<script>
+    document.getElementById("refresh").click();
+</script>
+@code {
+    private static string path_ = @"C:\Users\UnderKo\Downloads";
+    private static string[] FILES = new string[] { };
+    private static void Refresh()
+    {
+        FILES = Directory.GetFiles(path_);
+
+    }
+
+    
+}

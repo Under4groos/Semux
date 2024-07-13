@@ -5,12 +5,17 @@
              xmlns:vm="clr-namespace:Semux.ViewModels"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Semux.Views.MainView"
-             x:DataType="vm:MainViewModel">
+             x:DataType="vm:MainViewModel"
+			 Background="#1e1e1e"
+			 >
   <Design.DataContext>
     <!-- This only sets the DataContext for the previewer in an IDE,
          to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
     <vm:MainViewModel />
   </Design.DataContext>
 
-	<BlazorWebView HostPage="https://underko.ru"/>
+	<Grid>
+		<TextBlock Name="_label_loaded" Foreground="White" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Loading..."></TextBlock>
+		<WebView NavigationStarting="WebView_NavigationStarting" IsVisible="False" Name="webview"/>
+	</Grid>
 </UserControl>

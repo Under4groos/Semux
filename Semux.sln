@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Semux", "Semux\Semux.csproj
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Semux.Desktop", "Semux.Desktop\Semux.Desktop.csproj", "{BCF2BD35-6BB9-4BF8-8B71-6F3D517BAACA}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SemuxBlazorShared", "SemuxBlazorShared\SemuxBlazorShared.csproj", "{B1C15AB7-FE77-490B-A20D-FE5A05DA8D31}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{BCF2BD35-6BB9-4BF8-8B71-6F3D517BAACA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BCF2BD35-6BB9-4BF8-8B71-6F3D517BAACA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BCF2BD35-6BB9-4BF8-8B71-6F3D517BAACA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B1C15AB7-FE77-490B-A20D-FE5A05DA8D31}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1C15AB7-FE77-490B-A20D-FE5A05DA8D31}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1C15AB7-FE77-490B-A20D-FE5A05DA8D31}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1C15AB7-FE77-490B-A20D-FE5A05DA8D31}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

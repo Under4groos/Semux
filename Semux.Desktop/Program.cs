@@ -20,5 +20,5 @@ class Program
             .UsePlatformDetect()
             .WithInterFont()
             .LogToTrace()
-            .UseReactiveUI().UseDesktopWebView();
+            .UseReactiveUI().UseDesktopWebView().UseWindowWebView();
 }

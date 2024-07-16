@@ -1,52 +1,76 @@
 ﻿@page "/FileManager"
 @using System.Diagnostics
+@using Renci.SshNet.Sftp
+@using SemuxBlazorShared.Models
 @rendermode InteractiveServer
-<h3>FileManager</h3>
-<button class="d-none" id="refresh" @onclick="Refresh"></button>
-<div class="nav-scrollable" onclick="document.querySelector('.navbar-toggler').click()">
-    <nav class="flex-column">
-        <h4>@span</h4>
-        @foreach (var item in FILES)
-        {
-            <div class="nav-item px-3">
-                <NavLink class="nav-link m-3" @onclick="@( e=> OpenFile(item)  )">
-                    <span  class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> @item
-                </NavLink>
-            </div>
-        }
- 
+
+
+<div class="mt-4">
+    <nav aria-label="breadcrumb  ">
+        <ol class="breadcrumb p-1   rounded-3">
+            <li class="breadcrumb-item">
+                <a class="link-body-emphasis text-white" href="#">
+
+                    <span class="visually-hidden text-white">Home</span>
+                </a>
+            </li>
+            <li class="breadcrumb-item">
+                <a class="link-body-emphasis fw-semibold text-decoration-none text-white" href="#">Library</a>
+            </li>
+            <li class="breadcrumb-item active text-white" aria-current="page">
+                Data
+            </li>
+        </ol>
     </nav>
+
+    <button class="d-none" id="refresh" @onclick="Refresh"></button>
+
+    <table class="table-hover table-sm  dataTable ">
+        <thead class="border-bottom">
+            <tr>
+                <th style="width: 41.5281px;" class="custom-checkbox-header sorting_disabled" rowspan="1" colspan="1" aria-label="
+                    ">
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="js-select-all-items" onclick="checkbox_toggle()">
+                        <label class="custom-control-label" for="js-select-all-items"></label>
+                    </div>
+                </th>
+                <th class="sorting" tabindex="0" aria-controls="main-table" rowspan="1" colspan="1" aria-label="Name: activate to sort column ascending" style="width: 375.981px;">Name</th>
+                <th class="sorting" tabindex="0" aria-controls="main-table" rowspan="1" colspan="1" aria-label="Size: activate to sort column ascending" style="width: 153.012px;">Size</th>
+                <th class="sorting" tabindex="0" aria-controls="main-table" rowspan="1" colspan="1" aria-label="Modified: activate to sort column ascending" style="width: 302.278px;">Modified</th>
+                <th class="sorting_disabled" rowspan="1" colspan="1" aria-label="Perms" style="width: 106.528px;">Perms</th>
+                <th class="sorting_disabled" rowspan="1" colspan="1" aria-label="Owner" style="width: 459.012px;">Owner</th>
+                <th class="sorting_disabled" rowspan="1" colspan="1" aria-label="Actions" style="width: 336.059px;">Actions</th>
+            </tr>
+        </thead>
+        @foreach (var item in all)
+        {
+            
+            <NavLink class="nav-link ">
+                <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> @item.Name
+            </NavLink>
+        }
+    </table>
+
+
+ 
 </div>
 <script>
-    setInterval(function () {
-        document.getElementById("refresh").click();
-    }, 1000);
-   
+    // setInterval(function () {
+       
+    // }, 1000);
+    document.getElementById("refresh").click();
 </script>
 @code {
-    private static DateTime span;
-    private static string path_ = @"C:\Users\UnderKo\Videos";
-    private static string[] FILES = new string[] { };
-    private static void Refresh()
+    IEnumerable<ISftpFile> all = Array.Empty<ISftpFile>();
+
+    private void Refresh(MouseEventArgs e)
     {
-        FILES = Directory.GetFiles(path_);
+
+        if (G_.User.SftpClient == null && !G_.User.SftpClient.IsConnected)
+            return;
 
 
-        span = DateTime.Now;
+        all = G_.User.SftpClient.ListDirectory("/");
     }
-    private void OpenFile( string str)
-    {
-        ProcessStartInfo processStartInfo = new
-        ()
-            {
-                UseShellExecute = true,
-                FileName = str
-        };
-        var pr = new Process()
-            {
-                StartInfo = processStartInfo,
-            };
-        pr.Start();
-    }
-    
 }

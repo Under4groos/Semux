@@ -1,0 +1,55 @@
+﻿@page "/login"
+@using SemuxBlazorShared.Models
+@rendermode InteractiveServer
+
+<link rel="stylesheet" href="css/bootstrap/bootstrap_n.css" />
+<PageTitle>Signin</PageTitle>
+
+<div class="form-signin  m-auto">
+    <form style="background:#202020" class="p-4 rounded-3">
+        <div class="mt-3">
+            <label class="text-uppercase">Host</label>
+            <input value="@G_.User.Password" type="password" class="form-control  rounded-2"
+                   @onchange="@((ChangeEventArgs e) => {G_.User.HOST = e.Value.ToString();})" placeholder="ip/domen">
+
+        </div>
+        <div>
+            <label class="text-uppercase">User name</label>
+            <input value="@G_.User.Name" type="text" class="form-control  rounded-2"
+                   @onchange="@((ChangeEventArgs e) => {G_.User.Name = e.Value.ToString();})" placeholder="root">
+
+        </div>
+        <div class="mt-3">
+            <label class="text-uppercase">Password</label>
+            <input value="@G_.User.Password" type="password" class="form-control  rounded-2"
+                   @onchange="@((ChangeEventArgs e) => {G_.User.Password = e.Value.ToString();})" placeholder="12345">
+
+        </div>
+       
+        <div>
+            <div class="mt-3 row text-center">
+                <button @onclick="Connect" class="btn btn-primary mt-2" type="submit">Connect</button>
+               
+            </div>
+
+        </div>
+        
+        <div class="mt-3 row">
+            <label>Name:@G_.User.Name</label>
+            <label>Host:@G_.User.HOST</label>
+            <label>Password:@G_.User.Password</label>
+           
+            
+        </div>
+    </form>
+</div>
+@code {
+    
+
+
+    public void Connect()
+    {
+        
+
+    }
+}

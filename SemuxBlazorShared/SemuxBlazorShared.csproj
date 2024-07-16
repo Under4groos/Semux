@@ -8,6 +8,10 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <Content Include="Static\css\bootstrap_n.css" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <ProjectReference Include="..\Renci.SshNet\Renci.SshNet.csproj" />
 	  <ProjectReference Include="..\SemuxLib\SemuxLib.csproj" />
 	</ItemGroup>

@@ -1,4 +1,5 @@
 ﻿using SemuxBlazorShared.Components;
+using SemuxBlazorShared.Models;
 
 namespace SemuxBlazorShared
 {
@@ -7,20 +8,20 @@ namespace SemuxBlazorShared
         public CancellationTokenSource Init(string[]? args = default, string host = "https://localhost:9127/", Action<string>? loaded = default)
         {
             if (args == null)
-                args = new string[0];
+                args = Array.Empty<string>();
 
             CancellationTokenSource source = new CancellationTokenSource();
             CancellationToken token = source.Token;
             TaskFactory factory = new TaskFactory(token);
             factory.StartNew(() =>
             {
-                var builder = WebApplication.CreateBuilder(args);
+                WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
                 // Add services to the container.
                 builder.Services.AddRazorComponents()
                     .AddInteractiveServerComponents();
 
-                var app = builder.Build();
+                WebApplication app = builder.Build();
 
                 // Configure the HTTP request pipeline.
                 if (!app.Environment.IsDevelopment())
@@ -39,6 +40,9 @@ namespace SemuxBlazorShared
                     .AddInteractiveServerRenderMode();
 
                 loaded?.Invoke(host);
+
+
+                G_.User.Connect();
 
                 app.Run(host);
             });

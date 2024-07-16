@@ -1,13 +1,14 @@
 ﻿@page "/"
+@using SemuxBlazorShared.Models
 @rendermode InteractiveServer
-<PageTitle>Hdome</PageTitle>
 
-
-<p>
-    <input @bind-value="divStyle" @bind-value:event="oninput" style="width:300px;" />
-</p>
-<div style="@divStyle"></div>
+<link rel="stylesheet" href="css/bootstrap/bootstrap_n.css" />
+<PageTitle>Home</PageTitle>
  
+
 @code {
-    string divStyle = "background-color:blue;width:100px;height:100px;";
+   
+
 }
+
+ 

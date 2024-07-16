@@ -2,13 +2,14 @@
 @using System.Diagnostics
 @rendermode InteractiveServer
 <h3>FileManager</h3>
-<button id="refresh" @onclick="Refresh"></button>
+<button class="d-none" id="refresh" @onclick="Refresh"></button>
 <div class="nav-scrollable" onclick="document.querySelector('.navbar-toggler').click()">
     <nav class="flex-column">
+        <h4>@span</h4>
         @foreach (var item in FILES)
         {
             <div class="nav-item px-3">
-                <NavLink class="nav-link" @onclick="@( e=> OpenFile(item)  )">
+                <NavLink class="nav-link m-3" @onclick="@( e=> OpenFile(item)  )">
                     <span  class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> @item
                 </NavLink>
             </div>
@@ -17,15 +18,21 @@
     </nav>
 </div>
 <script>
-    document.getElementById("refresh").click();
+    setInterval(function () {
+        document.getElementById("refresh").click();
+    }, 1000);
+   
 </script>
 @code {
-    private static string path_ = @"C:\Users\UnderKo\Downloads";
+    private static DateTime span;
+    private static string path_ = @"C:\Users\UnderKo\Videos";
     private static string[] FILES = new string[] { };
     private static void Refresh()
     {
         FILES = Directory.GetFiles(path_);
 
+
+        span = DateTime.Now;
     }
     private void OpenFile( string str)
     {

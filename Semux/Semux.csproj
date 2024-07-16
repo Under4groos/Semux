@@ -22,5 +22,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SemuxBlazorShared\SemuxBlazorShared.csproj" />
+    <ProjectReference Include="..\SemuxLib\SemuxLib.csproj" />
   </ItemGroup>
 </Project>

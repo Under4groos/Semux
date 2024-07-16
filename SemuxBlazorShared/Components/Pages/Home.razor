@@ -1,4 +1,13 @@
 ﻿@page "/"
 @rendermode InteractiveServer
 <PageTitle>Hdome</PageTitle>
-asdasdasdasdas
+
+
+<p>
+    <input @bind-value="divStyle" @bind-value:event="oninput" style="width:300px;" />
+</p>
+<div style="@divStyle"></div>
+ 
+@code {
+    string divStyle = "background-color:blue;width:100px;height:100px;";
+}
